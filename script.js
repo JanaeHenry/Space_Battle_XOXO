@@ -18,7 +18,8 @@ class HumanShip extends Ship {
         this.firepower = 5,
         this.accuracy = .7
     }
-    attackAlien(target){ 
+    attackAlien(target){
+      console.log(alienGroup);
       let randomNum = Math.random()
       if (randomNum <= this.accuracy) { 
         target.hull -= this.firepower 
@@ -42,7 +43,7 @@ class HumanShip extends Ship {
 class AlienShip extends Ship { //Make an Alien Ship sub-class.
     constructor(name, hull, firepower, accuracy){
       super(name, hull, firepower, accuracy)
-      // this.name = name,
+       this.name = name,
         this.hull = Math.floor(Math.random() * ((6 - 3) + 1) + 3), // Finds random number between 3 and 6
         this.firepower = Math.floor(Math.random() * ((4 - 2) + 1) + 2), // Finds random number between 2 and 4 
         this.accuracy = Math.random() * ((.8 - .6) + .6)
@@ -102,8 +103,8 @@ const btn = document.getElementsByClassName('btn');
       // check if any enemy is left (if statement -- not a loop)
       if(alienGroup.length !== 0) {
         // if so, attack the first one in the array
-        ussAssembly.attackAlien(alienGroup)
-
+        ussAssembly.attackAlien(alienGroup[0])
+        
       } else {
         // else, end the game with disabling button and popping up YOU WIN! alert.
         endGame();
